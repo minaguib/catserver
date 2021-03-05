@@ -8,10 +8,10 @@ import (
 )
 
 //go:embed cat.gif
-var cat_gif []byte
+var catGIF []byte
 
 //go:embed cat.html
-var cat_html []byte
+var catHTML []byte
 
 func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
@@ -20,13 +20,13 @@ func main() {
 			return
 		}
 		w.Header().Set("Content-Type", "text/html")
-		w.Header().Set("Content-Length", strconv.Itoa(len(cat_html)))
-		w.Write(cat_html)
+		w.Header().Set("Content-Length", strconv.Itoa(len(catHTML)))
+		w.Write(catHTML)
 	})
 	http.HandleFunc("/cat.gif", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "image/gif")
-		w.Header().Set("Content-Length", strconv.Itoa(len(cat_gif)))
-		w.Write(cat_gif)
+		w.Header().Set("Content-Length", strconv.Itoa(len(catGIF)))
+		w.Write(catGIF)
 	})
 	fmt.Println("Starting web server at http://0.0.0.0:8081/")
 	http.ListenAndServe(":8081", nil)

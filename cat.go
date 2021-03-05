@@ -4,6 +4,7 @@ import (
 	_ "embed"
 	"fmt"
 	"net/http"
+	"strconv"
 )
 
 //go:embed cat.gif
@@ -19,10 +20,12 @@ func main() {
 			return
 		}
 		w.Header().Set("Content-Type", "text/html")
+		w.Header().Set("Content-Length", strconv.Itoa(len(cat_html)))
 		w.Write(cat_html)
 	})
 	http.HandleFunc("/cat.gif", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "image/gif")
+		w.Header().Set("Content-Length", strconv.Itoa(len(cat_gif)))
 		w.Write(cat_gif)
 	})
 	fmt.Println("Starting web server at http://0.0.0.0:8081/")

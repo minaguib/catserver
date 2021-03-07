@@ -18,13 +18,13 @@
 
   <body>
 
-    <a href="/">
-      <img src="/cat.gif" />
+    <a href="/cat/X.html">
+      <img id="img" src="/cat/X.gif" />
     </a>
 
     <script>
       <!--
-        setTimeout(function() {window.location.reload()}, 4000);
+        setTimeout(function() {document.getElementById("img").click()}, 4000);
       // -->
     </script>
 
